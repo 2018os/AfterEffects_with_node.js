@@ -30,33 +30,40 @@
 //
 // getFileSize();
 
-
 // folder Size
 
-const {exec} = require('child_process');
+const url = 'C:/Users/user11/Desktop/오리/AE/';
+const fs = require('fs');
+const path = require('path');
+let File_List = fs.readdirSync(url);
+const execSync = require('sync-exec');
 const fsUtils = require('nodejs-fs-utils');
 let folderSize = 0;
 
 function F_Get_Folder_Size() {
-  setInterval(() => {
+  let timer = setInterval(() => {
     let prevSize = folderSize;
-    let stats = fsUtils.fsizeSync('C:/Users/user11/Desktop/오리/AE', (err, size) => {
+    let stats = fsUtils.fsizeSync(url, (err, size) => {
       if (err) console.error(err);
+      console.log('파일 사이즈 확인');
     });
     folderSize = stats.size;
 
     if (prevSize === folderSize) {
-      console.log('same!');
-      exec('cd C:/Program Files/Adobe/Adobe After Effects CC 2018/Support Files && AfterFX.exe C:/Users/user11/Desktop/오리/AE/hello.aep', (error, stdout, stderr) => {
-        if (error) {
-          console.error(error);
-          return
-        }
+      console.log('이전 크기와 현재 크기가 같다');
+      File_List.forEach((file) => {
+        console.log('foreach 시작');
+        if(path.extname(file) === '.aep') {
+          console.log(file + ': .aep');
+          execSync(`cd C:/Program Files/Adobe/Adobe After Effects CC 2018/Support Files && AfterFX.exe ${url}${file}`);
 
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
+        } else {
+          console.log(file + ': are not');
+        }
       });
+      clearInterval(timer);
     } else {
+      console.log('이전 크기와 현재 크기가 다르다');
       console.log('not same');
     }
 
@@ -64,6 +71,3 @@ function F_Get_Folder_Size() {
 }
 
 F_Get_Folder_Size();
-
-
-
