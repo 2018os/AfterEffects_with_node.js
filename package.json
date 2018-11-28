@@ -5,6 +5,7 @@
   "dependencies": {
     "get-folder-size": "^2.0.0",
     "nodejs-fs-utils": "^1.1.2",
+    "socket.io": "^2.1.1",
     "sync-exec": "^0.6.2"
   }
 }

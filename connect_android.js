@@ -4,45 +4,29 @@ const fs = require('fs');
 const FolderName = "CopyFolder3";
 const CopyFile = "AE/hello.aep";
 const url = "C:/Users/user11/Desktop/오리/";
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
-let users = [
-  {
-    id: 1,
-    name: 'alice'
-  },
-  {
-    id: 2,
-    name: 'bek'
-  },
-  {
-    id: 3,
-    name: 'chris'
-  }
-];
+app.set('view engine', 'ejs');
+app.set('views', './');
 
-app.get('/users', (req, res) => {
-  console.log('who get in here/users');
-  res.json(users)
+app.get('/', (req, res) => {
+  res.render('main');
 });
 
-app.get('/post', (req, res) => {
-  console.log('who get in here post /users');
-  let inputData;
+io.on('connection', (socket) => {
 
-  req.on('data', (data) => {
-    inputData = JSON.parse(data);
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
   });
 
-  req.on('end', () => {
-//    console.log("user_id : "+inputData.user_id + " , name : "+inputData.name);
-  });
-
-  fs.mkdirSync(url+FolderName);
-  fs.copyFileSync(url + CopyFile, url + FolderName + "/copyfile.aep");
-  res.write("폴더 생성 완료");
-  res.end();
+  console.log('hello');
+  // fs.mkdirSync(url+FolderName);
+  // fs.copyFileSync(url + CopyFile, url + FolderName + "/copyfile.aep");
 });
 
-app.listen(3000, () => {
+
+
+http.listen(3000, () => {
   console.log('Example app listening on port 3000!');
 });
