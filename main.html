@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
+        function myfunction() {
+            socket.emit('msg', 'firstMsg');
+              socket.on('msg', () => {
+            document.getElementById('socket').innerHTML="Connect";
+            });
+        }
+    </script>
+    <h1>hello</h1>
+    <button onclick="myfunction()">EventButton</button>
+    <h2 id="socket"></h2>
+</body>
+</html>

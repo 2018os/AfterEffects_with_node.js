@@ -6,12 +6,11 @@ const CopyFile = "AE/hello.aep";
 const url = "C:/Users/user11/Desktop/오리/";
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const path = require('path');
 
-app.set('view engine', 'ejs');
-app.set('views', './');
 
 app.get('/', (req, res) => {
-  res.render('main');
+  res.sendFile(path.join(__dirname, 'main.html'));
 });
 
 io.on('connection', (socket) => {
@@ -21,6 +20,10 @@ io.on('connection', (socket) => {
   });
 
   console.log('hello');
+  socket.on('msg', (msg) => {
+    console.log(msg);
+    socket.emit('msg');
+  });
   // fs.mkdirSync(url+FolderName);
   // fs.copyFileSync(url + CopyFile, url + FolderName + "/copyfile.aep");
 });
