@@ -56,7 +56,6 @@ function F_Get_Folder_Size() {
         if(path.extname(file) === '.aep') {
           console.log(file + ': .aep');
           execSync(`cd C:/Program Files/Adobe/Adobe After Effects CC 2018/Support Files && AfterFX.exe ${url}${file}`);
-
         } else {
           console.log(file + ': are not');
         }
