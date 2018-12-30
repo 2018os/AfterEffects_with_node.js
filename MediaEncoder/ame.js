@@ -31,6 +31,7 @@ let timer = setInterval(() => {
       let clear = '';
       fs.writeFileSync(`${dir}${text}`, clear, 'ucs2');    //로그 파일 내용 지우기
       // stop();
+      // ajax로 신호 보내기
     }).catch((err) => {
       console.error(err);
     });

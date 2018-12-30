@@ -1,37 +1,3 @@
-// file Size
-
-// const { exec } = require('child_process');
-// const fs = require('fs');
-// let fileSize = 0;
-//
-// function getFileSize() {
-//   setInterval(() => {
-//     let prevSize = fileSize;
-//     let stats = fs.statSync('C:/Users/user11/Desktop/오리/AE/hello.aep');
-//     fileSize = stats.size;
-//
-//     if(prevSize === fileSize) {
-//       console.log('same!');
-//       exec('cd C:/Program Files/Adobe/Adobe After Effects CC 2018/Support Files && AfterFX.exe C:/Users/user11/Desktop/오리/AE/hello.aep', (error, stdout, stderr) => {
-//         if (error) {
-//           console.error(error);
-//           return
-//         }
-//
-//         console.log('stdout: ' + stdout);
-//         console.log('stderr: ' + stderr);
-//       });
-//     } else {
-//       console.log('not same');
-//     }
-//
-//   }, 3000); // 5초
-// }
-//
-// getFileSize();
-
-// folder Size
-
 const url = 'C:/Users/user11/Desktop/오리/AE/';
 const fs = require('fs');
 const path = require('path');
